@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { polar, camera, blueBg } from "../Components/exports";
+import { polar, camera, blueBg, polarSede } from "../Components/exports";
 
 function SignUp() {
    const server = "http://localhost:3001";
@@ -151,118 +151,126 @@ function SignUp() {
       //eslint-disable-next-line
    }, [input]);
    return (
-      <section className="pt-[50px] flex flex-col w-full box-border relative top-[73px] bg-[#1A3365] h-max items-center pb-10">
-         <form className="w-[312px] z-10 flex flex-col justify-center items-center gap-[21px] px-[44px] py-[25px] top-[75px] bg-[#F1F6F9] rounded-[20px]">
-            <img className="w-[224px]" src={polar} alt="Empresas Polar" />
-            <div className="frame flex flex-col gap-[15px] w-full">
-               <div className="flex justify-center">
-                  <figure className="relative rounded-full bg-[#E7E7E7] w-[125px] h-[125px] shadow-sm">
-                     <div className="absolute bottom-0 flex justify-center items-center w-[35px] h-[35px] rounded-full bg-[#FFFFFF] border-[1px] border-[#E7E7E7]" onClick={() => inputFile.current.click()}>
-                        <img className="w-[25px]"
-                        src={camera} alt="camara" />
+      <section className="pt-[50px] flex flex-col w-full box-border relative top-[73px] h-max pb-10 min-[1440px]:px-[45px] min-[1440px]:gap-[24px] min-[1440px]:bg-[#F1F6F9] min-[1440px]:justify-center max-[1439px]:bg-[#1A3365] max-[1439px]:items-center">
+         <img className="w-[262px] max-[1439px]:hidden" src={polar} alt="Empresas Polar" />
+         <div className="w-full px-[95px] max-[1439px]:hidden">
+            <div className="flex justify-center items-center bg-[#D9D9D9] rounded-lg max-[1439px]:hidden">
+               <img className="w-[500px] h-[800px] max-[1439px]:hidden" src={polarSede} alt="" />
+               <form className="z-10 flex flex-col justify-center items-center gap-[21px] bg-[#F1F6F9] pt-[15px] pb-[25px] top-[75px] rounded-[20px] min-[1440px]:w-[500px] min-[1440px]:bg-[#FFFFFF] max-[1439px]:w-[312px]">
+                  <img className="w-[224px] min-[1440px]:hidden" src={polar} alt="Empresas Polar" />
+                  <p className="text-[24px] border-[#E7E7E7] border-b-[1px] text-center pb-[15px] w-full max-[1439px]:hidden">Registro</p>
+                  <div className="frame flex flex-col gap-[15px] px-[44px] w-full">
+                     <div className="flex justify-center">
+                        <figure className="relative rounded-full bg-[#E7E7E7] w-[125px] h-[125px] shadow-sm">
+                           <div className="absolute bottom-0 flex justify-center items-center w-[35px] h-[35px] rounded-full bg-[#FFFFFF] border-[1px] border-[#E7E7E7]"
+                           onClick={() => inputFile.current.click()}>
+                              <img className="w-[25px]"
+                              src={camera} alt="camara" />
+                           </div>
+                           <input
+                              className="hidden"
+                              ref={inputFile}
+                              id="image"
+                              type="file"
+                              name="image"
+                              accept="image/jpeg, image/png"
+                              onChange={handleValidation}
+                           />
+                        </figure>
                      </div>
+                     <div className="relative">
+                        <span className="error">{error.image}</span>
+                     </div>
+                     <label className="text-[20px] text-[#394867]" htmlFor="firstname">Nombre:</label>
                      <input
-                        className="hidden"
-                        ref={inputFile}
-                        id="image"
-                        type="file"
-                        name="image"
-                        accept="image/jpeg, image/png"
-                        onChange={handleValidation}
+                        className={`data ${error.firstname ? "border-[#DC3545]" : ""}`}
+                        id="firstname"
+                        type="text"
+                        name="firstname"
+                        onChange={handleChange}
                      />
-                  </figure>
-               </div>
-               <div className="relative">
-                  <span className="error">{error.image}</span>
-               </div>
-               <label className="text-[20px] text-[#394867]" htmlFor="firstname">Nombre:</label>
-               <input
-                  className={`data ${error.firstname ? "border-[#DC3545]" : ""}`}
-                  id="firstname"
-                  type="text"
-                  name="firstname"
-                  onChange={handleChange}
-               />
-               <div className="relative">
-                  <span className="error">{error.firstname}</span>
-               </div>
-               <label className="text-[20px] text-[#394867]" htmlFor="lastname">Apellido:</label>
-               <input
-                  className={`data ${error.lastname ? "border-[#DC3545]" : ""}`}
-                  id="lastname"
-                  type="text"
-                  name="lastname"
-                  onChange={handleChange}
-               />
-               <div className="relative">
-                  <span className="error">{error.lastname}</span>
-               </div>
-               <label className="text-[20px] text-[#394867]" htmlFor="phone">Número de teléfono:</label>
-               <input
-                  className={`data ${error.phone ? "border-[#DC3545]" : ""}`}
-                  id="phone"
-                  type="tel"
-                  name="phone"
-                  onBlur={handleChange}
-               />
-               <div className="relative">
-                  <span className="error">{error.phone}</span>
-               </div>
-               <label className="text-[20px] text-[#394867]" htmlFor="email">Correo electrónico:</label>
-               <input
-                  className={`data ${error.email ? "border-[#DC3545]" : ""}`}
-                  id="email"
-                  type="email"
-                  name="email"
-                  onBlur={handleChange}
-               />
-               <div className="relative">
-                  <span className="error">{error.email}</span>
-               </div>
-               <label className="text-[20px] text-[#394867]" htmlFor="password">Contraseña:</label>
-               <input
-                  className={`data ${error.password ? "border-[#DC3545]" : ""}`}
-                  id="password"
-                  type="password"
-                  name="password"
-                  onBlur={handleChange}
-                  title={"La contraseña debe contener entre 8 y 16 caracteres y al menos uno de los siguientes:\n- Mayúscula\n- Minúcula\n- Dígito\n- Un caracter especial de entre: !@#$%^&*/"}
-               />
-               <div className="relative">
-                  <span className="error">{error.password}</span>
-               </div>
-               <label className="text-[20px] text-[#394867]" htmlFor="repPassword">Confirmar contraseña:</label>
-               <input
-                  className={`data ${error.repPassword ? "border-[#DC3545]" : ""}`}
-                  id="repPassword"
-                  type="password"
-                  name="repPassword"
-                  onBlur={handleChange}
-               />
-               <div className="relative">
-                  <span className="error">{error.repPassword}</span>
-               </div>
-               <label className="text-[20px] text-[#394867]" htmlFor="address">Dirección:</label>
-               <textarea 
-                  className={`data focus:h-[100px] transition-[height] duration-500 ease-in ${error.address ? "border-[#DC3545]" : ""}`}
-                  name="address" 
-                  id="address"
-                  onChange={handleChange}
-               >
-               </textarea>
-               <div className="relative">
-                  <span className="error">{error.address}</span>
-               </div>
-               <button className={button.current && button.current.disabled === true ? "btn bg-[#3056D3] text-[#FFFFFF] w-full rounded-[6px] h-[50px] opacity-50" : "btn bg-[#3056D3] text-[#FFFFFF] w-full rounded-[6px] h-[50px]"}
-                  ref={button}
-                  id="submit"
-                  onClick={handleSubmit} 
-                  type="button">Registrarse
-               </button>
-               <p className="text-[#ADADAD] text-[16px] tracking-tight">¿Ya eres miembro? <Link to="/login" className="text-[#3056D3] underline">Iniciar sesión</Link></p>
+                     <div className="relative">
+                        <span className="error">{error.firstname}</span>
+                     </div>
+                     <label className="text-[20px] text-[#394867]" htmlFor="lastname">Apellido:</label>
+                     <input
+                        className={`data ${error.lastname ? "border-[#DC3545]" : ""}`}
+                        id="lastname"
+                        type="text"
+                        name="lastname"
+                        onChange={handleChange}
+                     />
+                     <div className="relative">
+                        <span className="error">{error.lastname}</span>
+                     </div>
+                     <label className="text-[20px] text-[#394867]" htmlFor="phone">Número de teléfono:</label>
+                     <input
+                        className={`data ${error.phone ? "border-[#DC3545]" : ""}`}
+                        id="phone"
+                        type="tel"
+                        name="phone"
+                        onBlur={handleChange}
+                     />
+                     <div className="relative">
+                        <span className="error">{error.phone}</span>
+                     </div>
+                     <label className="text-[20px] text-[#394867]" htmlFor="email">Correo electrónico:</label>
+                     <input
+                        className={`data ${error.email ? "border-[#DC3545]" : ""}`}
+                        id="email"
+                        type="email"
+                        name="email"
+                        onBlur={handleChange}
+                     />
+                     <div className="relative">
+                        <span className="error">{error.email}</span>
+                     </div>
+                     <label className="text-[20px] text-[#394867]" htmlFor="password">Contraseña:</label>
+                     <input
+                        className={`data ${error.password ? "border-[#DC3545]" : ""}`}
+                        id="password"
+                        type="password"
+                        name="password"
+                        onBlur={handleChange}
+                        title={"La contraseña debe contener entre 8 y 16 caracteres y al menos uno de los siguientes:\n- Mayúscula\n- Minúcula\n- Dígito\n- Un caracter especial de entre: !@#$%^&*/"}
+                     />
+                     <div className="relative">
+                        <span className="error">{error.password}</span>
+                     </div>
+                     <label className="text-[20px] text-[#394867]" htmlFor="repPassword">Confirmar contraseña:</label>
+                     <input
+                        className={`data ${error.repPassword ? "border-[#DC3545]" : ""}`}
+                        id="repPassword"
+                        type="password"
+                        name="repPassword"
+                        onBlur={handleChange}
+                     />
+                     <div className="relative">
+                        <span className="error">{error.repPassword}</span>
+                     </div>
+                     <label className="text-[20px] text-[#394867]" htmlFor="address">Dirección:</label>
+                     <textarea 
+                        className={`data focus:h-[100px] transition-[height] duration-500 ease-in ${error.address ? "border-[#DC3545]" : ""}`}
+                        name="address" 
+                        id="address"
+                        onChange={handleChange}
+                     >
+                     </textarea>
+                     <div className="relative">
+                        <span className="error">{error.address}</span>
+                     </div>
+                     <button className={button.current && button.current.disabled === true ? "btn bg-[#3056D3] text-[#FFFFFF] w-full rounded-[6px] h-[50px] opacity-50" : "btn bg-[#3056D3] text-[#FFFFFF] w-full rounded-[6px] h-[50px]"}
+                        ref={button}
+                        id="submit"
+                        onClick={handleSubmit} 
+                        type="button">Registrarse
+                     </button>
+                     <p className="text-[#ADADAD] text-[16px] tracking-tight">¿Ya eres miembro? <Link to="/login" className="text-[#3056D3] underline">Iniciar sesión</Link></p>
+                  </div>
+               </form>
             </div>
-         </form>
-         <img className="z-0 absolute bottom-0" src={blueBg} alt="background" />
+         </div>
+         <img className="z-0 absolute bottom-0 min-[1440px]:hidden" src={blueBg} alt="background" />
       </section>
    );
 };

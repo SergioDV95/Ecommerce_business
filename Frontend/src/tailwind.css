@@ -4,7 +4,7 @@
 
 @layer components {
    body {
-      @apply text-[18px] w-full box-border
+      @apply text-[18px] min-[1440px]:text-[16px] w-full box-border
    }
    .navbutton {
       @apply flex items-center justify-center gap-[12px] text-[#637381] h-[48px] border-b-[1px] border-l-[1px] border-[#9BA4B4]

@@ -24,6 +24,7 @@ import userIco from "../images/icons/user.png";
 import camera from "../images/icons/camera.png";
 import blueBg from "../images/various/bg.png";
 import bg_login from "../images/various/bg_login.png";
+import polarSede from "../images/various/Sede_Polar.jpeg";
 
 
-export { polar, menuIco, home, box, log_in, signup, shopping_bag, cart, log_out, settings, userIco, camera, blueBg, bg_login };
+export { polar, menuIco, home, box, log_in, signup, shopping_bag, cart, log_out, settings, userIco, camera, blueBg, bg_login, polarSede };
