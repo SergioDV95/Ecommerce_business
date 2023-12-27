@@ -153,10 +153,10 @@ function SignUp() {
    return (
       <section className="pt-[50px] flex flex-col w-full box-border relative top-[73px] h-max pb-10 min-[1440px]:px-[45px] min-[1440px]:gap-[24px] min-[1440px]:bg-[#F1F6F9] min-[1440px]:justify-center max-[1439px]:bg-[#1A3365] max-[1439px]:items-center">
          <img className="w-[262px] max-[1439px]:hidden" src={polar} alt="Empresas Polar" />
-         <div className="w-full px-[95px] max-[1439px]:hidden">
-            <div className="flex justify-center items-center bg-[#D9D9D9] rounded-lg max-[1439px]:hidden">
-               <img className="w-[500px] h-[800px] max-[1439px]:hidden" src={polarSede} alt="" />
-               <form className="z-10 flex flex-col justify-center items-center gap-[21px] bg-[#F1F6F9] pt-[15px] pb-[25px] top-[75px] rounded-[20px] min-[1440px]:w-[500px] min-[1440px]:bg-[#FFFFFF] max-[1439px]:w-[312px]">
+         <div className="w-full px-[95px]">
+            <div className="flex justify-center items-center bg-[#D9D9D9] rounded-lg">
+               <img className="w-[500px] h-[1045px] max-[1439px]:hidden" src={polarSede} alt="" />
+               <form className="z-10 flex flex-col justify-center items-center gap-[21px] bg-[#F1F6F9] pt-[15px] pb-[25px] top-[75px] rounded-[20px] min-[1440px]:rounded-[10px] min-[1440px]:w-[500px] min-[1440px]:bg-[#FFFFFF] max-[1439px]:w-[312px]">
                   <img className="w-[224px] min-[1440px]:hidden" src={polar} alt="Empresas Polar" />
                   <p className="text-[24px] border-[#E7E7E7] border-b-[1px] text-center pb-[15px] w-full max-[1439px]:hidden">Registro</p>
                   <div className="frame flex flex-col gap-[15px] px-[44px] w-full">
@@ -181,27 +181,33 @@ function SignUp() {
                      <div className="relative">
                         <span className="error">{error.image}</span>
                      </div>
-                     <label className="text-[20px] text-[#394867]" htmlFor="firstname">Nombre:</label>
-                     <input
-                        className={`data ${error.firstname ? "border-[#DC3545]" : ""}`}
-                        id="firstname"
-                        type="text"
-                        name="firstname"
-                        onChange={handleChange}
-                     />
-                     <div className="relative">
-                        <span className="error">{error.firstname}</span>
-                     </div>
-                     <label className="text-[20px] text-[#394867]" htmlFor="lastname">Apellido:</label>
-                     <input
-                        className={`data ${error.lastname ? "border-[#DC3545]" : ""}`}
-                        id="lastname"
-                        type="text"
-                        name="lastname"
-                        onChange={handleChange}
-                     />
-                     <div className="relative">
-                        <span className="error">{error.lastname}</span>
+                     <div className="flex gap-[15px] min-[1440px]:gap-[11px] max-[1439px]:flex-col">
+                        <div className="flex flex-col gap-[15px] w-full">
+                           <label className="text-[20px] text-[#394867]" htmlFor="firstname">Nombre:</label>
+                           <input
+                              className={`data ${error.firstname ? "border-[#DC3545]" : ""}`}
+                              id="firstname"
+                              type="text"
+                              name="firstname"
+                              onChange={handleChange}
+                           />
+                           <div className="relative">
+                              <span className="error">{error.firstname}</span>
+                           </div>
+                        </div>
+                        <div className="flex flex-col gap-[15px] w-full">
+                           <label className="text-[20px] text-[#394867]" htmlFor="lastname">Apellido:</label>
+                           <input
+                              className={`data ${error.lastname ? "border-[#DC3545]" : ""}`}
+                              id="lastname"
+                              type="text"
+                              name="lastname"
+                              onChange={handleChange}
+                           />
+                           <div className="relative">
+                              <span className="error">{error.lastname}</span>
+                           </div>
+                        </div>
                      </div>
                      <label className="text-[20px] text-[#394867]" htmlFor="phone">Número de teléfono:</label>
                      <input
@@ -265,7 +271,7 @@ function SignUp() {
                         onClick={handleSubmit} 
                         type="button">Registrarse
                      </button>
-                     <p className="text-[#ADADAD] text-[16px] tracking-tight">¿Ya eres miembro? <Link to="/login" className="text-[#3056D3] underline">Iniciar sesión</Link></p>
+                     <p className="text-[#ADADAD] text-[16px] tracking-tight min-[1440px]:text-center">¿Ya eres miembro? <Link to="/login" className="text-[#3056D3] underline">Iniciar sesión</Link></p>
                   </div>
                </form>
             </div>
